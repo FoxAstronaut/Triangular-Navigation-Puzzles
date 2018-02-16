@@ -5,6 +5,7 @@ To run this application there is a main method for the class Triangular_Naviagti
 ## Method
 ### Network Maker
 To improve efficiency when computing every reachable vertex when finding a solution so instead we just find every reachable vertex from every other vertex. This is stored in a HashMap so that the key is the vertex and the value is a list of all reachable vertices from that vertex:
+
 | Key      |         Value        |
 |----------|:--------------------:|
 | (16, 19) | [(17, 19), (14, 20)] |

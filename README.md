@@ -1,13 +1,16 @@
 # Triangular Navigation Puzzles
-## Requirements
-1. The algorithm must output the most optimal solution. Measured by the number of line segments.
-2. A line cannot enter the interior of a triangle. Triangles are defined by their three vertices.
-3. A line can intersect the edge or vertex of a triangle
-4. The algorithm must include a nextConfig function which gives the adjacent or reachable states
-5. The Java must include a main function so that it can be run without BlueJ
-6. The algorithm should be documented (but not excessively), efficient and also as brief as needed will get the highest marks. Or as put in the assignment “Code that is clear, elegant and succinct will attract the highest marks”
-7. An effort should be made to make the code more efficient but making drastic changes with a small impact is discouraged. Or as put in the assignment “Minor changes to the code that significantly improve efficiency are encouraged; major changes that have a minor impact on efficiency are discouraged.”
+## How To Run
+To run this application there is a main method for the class Triangular_Naviagtion_Puzzles running this will output the solutions to the questions in the file questions.txt in the triangle field stored in triangles.txt. These solutions will be outputted into the folder solutions with each solution being in a folder marked with its number e.g. 0.txt,1.txt etc.
 
 ## Method
-Depth-Limited Search
-Using a depth-limited search method to search all paths of 1,2,3,4 … n-1 length before checking n will find the optimum path
+### Network Maker
+To improve efficiency when computing every reachable vertex when finding a solution so instead we just find every reachable vertex from every other vertex. This is stored in a HashMap so that the key is the vertex and the value is a list of all reachable vertices from that vertex:
+| Key      |         Value        |
+|----------|:--------------------:|
+| (16, 19) | [(17, 19), (14, 20)] |
+
+### Depth Limited Search
+To find the solutions to the problems we use a recursive function. The function is first called with the start vertex and the current path limit (started at 0) it checks the path limit is not 0 otherwise it returns an empty array. It also calls the function on all its reachable vertices, returned by the nextConfig method. If a vertex sees that it is the end vertex it will return a list of itself. All the functions that called that will then tack their vertex onto the front of the list to create the path. If no path can be found and the limit is reached, the limit is the number of all vertices in the puzzle, if this is reached then we have a big problem, as per discussion with Andy King all questions should have a solution.
+
+## Note
+I have used the term node such as cNode, sNode & fNode in place of vertex as I use a network.

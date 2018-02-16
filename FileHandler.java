@@ -1,7 +1,21 @@
+/**
+* This class handles all the reading and writing to files
+* as well as doing all the string wrangling.
+* the format of the questions.txt and triangles.txt file was
+* made so they could easily be copied and pasted from the assessment
+* documents without too much messing around.
+*
+* @author George Calnan
+* @version 1.0
+*/
+
+
 import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.FileWriter;
+import java.io.File;
 
 public class FileHandler{
   public static void main(String[] args){
@@ -92,5 +106,29 @@ public class FileHandler{
 			}
 		}
     return questions;
+  }
+  /*
+  * writeSolutionFile writes the given array to a file with the name of the no
+  *   given. It checks the format against the Format Checker
+  *
+  * @param questionNo the no of the question being written this is used as the
+  *   filename
+  * @param solution this is the solution to the question
+  */
+  public static void writeSolutionFile(String questionNo,ArrayList<String> solution){
+    String text = String.join(" ",solution);
+    String filename = questionNo+".txt";
+    String path = "solutions/"+filename;
+    File file = new File(path);
+    try {
+      file.createNewFile();
+      FileWriter writer = new FileWriter(file);
+      writer.write(text);
+      writer.flush();
+      writer.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    FormatChecker.main(new String[] {path});
   }
 }

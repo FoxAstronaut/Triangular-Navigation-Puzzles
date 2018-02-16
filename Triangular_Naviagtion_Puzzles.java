@@ -13,15 +13,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class DepthLimitedSearch{
+public class Triangular_Naviagtion_Puzzles{
   ArrayList<ArrayList<Vertex>> triangles;
   ArrayList<ArrayList<Vertex>> questions;
 
   HashMap<String,ArrayList<Vertex>> network;
 
   public static void main(String[] args){
-    DepthLimitedSearch dls = new DepthLimitedSearch();
-    dls.init();
+    Triangular_Naviagtion_Puzzles tnp = new Triangular_Naviagtion_Puzzles();
+    tnp.init();
   }
 
   /*
@@ -102,7 +102,7 @@ public class DepthLimitedSearch{
   * the relevent functions. It also writes all the answers to the
   * respective files.
   */
-  public void init(){
+  private void init(){
     triangles = FileHandler.readTrianglesFile();
     questions = FileHandler.readQuestionsFile();
     NetworkMaker nh = new NetworkMaker(triangles);
@@ -113,12 +113,12 @@ public class DepthLimitedSearch{
         maxLimit++;
       }
     }
-
+    int questionNo = 0;
     for(ArrayList<Vertex> que:questions){
-      Vertex sNode = que.get(0); //Start Node
-      Vertex fNode = que.get(1); //Finish Node
-      //Write this to a file
-      solvePath(sNode,fNode,maxLimit);
+      Vertex sNode = que.get(0);
+      Vertex fNode = que.get(1);
+      FileHandler.writeSolutionFile(String.valueOf(questionNo),solvePath(sNode,fNode,maxLimit));
+      questionNo++;
     }
   }
 }

@@ -4,7 +4,7 @@
 * that are reachable from that vertex. Using this helps reduce
 * the redundency of recomputing the reachable node for every question
 *
-* @author  George Calnan
+* @author George Calnan
 * @version 1.0
 */
 

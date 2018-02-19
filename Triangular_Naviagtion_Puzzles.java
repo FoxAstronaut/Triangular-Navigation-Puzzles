@@ -91,6 +91,7 @@ public class Triangular_Naviagtion_Puzzles{
         return path;
       }
     }
+    //If we get to this point a fatal error has occured as all questions have solutions
     System.out.println("No Path Could be Found from:" + sNode + " to:" + fNode);
     System.out.println("This is a big problem");
     System.exit(0);
